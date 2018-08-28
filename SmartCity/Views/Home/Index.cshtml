@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="react-app" asp-prerender-module="ClientApp/dist/main-server">Loading...</div>
+
+@section scripts {
+    <script>
+
+        window.getFbSdk = (function () {
+            var callbacks = [];
+            var isInit = false;
+            
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '319115718557054',
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v2.10',
+                    scope: 'email',
+                });
+
+                FB.AppEvents.logPageView();
+                isInit = true;
+                while (callbacks.length) {
+                    var cb = callbacks.shift();
+                    cb(FB);
+                }
+            };
+
+            return function (callback) {
+                if (isInit) {
+                    setTimeout(function () {
+                        callback(FB);
+                    }, 0);
+                } else {
+                    callbacks.push(callback);
+                }
+            };
+        })();
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
+
+@section resources {
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700" rel="stylesheet">
+}
