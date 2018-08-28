@@ -1,6 +1,6 @@
 # IntelliCity - All the info you need in one familiar place
 
-#### Contributors - veselink1, lubomarinski
+#### Contributors - [veselink1](https://github.com/veselink1), [lubomarinski](https://github.com/lubomarinski)
 
 ## About
 IntelliCity is a website which doubles as a personalisable homepage (ala iGoogle). It allows you to make use of information cards to better plan your day and make use of all the smart systems that a city may have. The dashboard is entirely customisable to suit the users' preferences.
